@@ -1,13 +1,31 @@
-
+import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { getUserETFs } from "@/data/mockEtfs";
 import { ETFCard } from "@/components/etf/ETFCard";
 import { Wallet as WalletIcon, PlusCircle, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ETF } from "@/types/etf";
 
 export function Wallet() {
-  const userEtfs = getUserETFs();
+  const [userEtfs, setUserEtfs] = useState<ETF[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserETFs = async () => {
+      try {
+        const etfs = await getUserETFs();
+        setUserEtfs(etfs);
+      } catch (error) {
+        console.error("Error fetching user ETFs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserETFs();
+  }, []);
+
   const totalBalance = userEtfs.reduce((sum, etf) => sum + etf.price, 0);
   const positiveChange = userEtfs.filter(etf => etf.change.isPositive).length;
   const negativeChange = userEtfs.length - positiveChange;
@@ -75,11 +93,17 @@ export function Wallet() {
         </div>
 
         <h2 className="text-xl font-semibold mt-8">My ETF Investments</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {userEtfs.map((etf) => (
-            <ETFCard key={etf.id} etf={etf} showDetails={true} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex items-center justify-center h-64">
+            <p>Loading your investments...</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {userEtfs.map((etf) => (
+              <ETFCard key={etf.id} etf={etf} showDetails={true} />
+            ))}
+          </div>
+        )}
       </div>
     </DashboardLayout>
   );

@@ -1,4 +1,5 @@
 
+import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { BalanceCard } from "@/components/dashboard/BalanceCard";
 import { AssetAllocation } from "@/components/dashboard/AssetAllocation";
@@ -7,6 +8,7 @@ import { QuickActions } from "@/components/dashboard/QuickActions";
 import { Bitcoin, DollarSign, Euro } from "lucide-react";
 import { ETFMiniList } from "@/components/dashboard/ETFMiniList";
 import { getAllETFs } from "@/data/mockEtfs";
+import { ETF } from "@/types/etf";
 
 const mockPerformanceData = [
   { date: "Jan", value: 3400 },
@@ -31,7 +33,23 @@ const mockAssetData = [
 ];
 
 export function Dashboard() {
-  const topETFs = getAllETFs().slice(0, 4);
+  const [topETFs, setTopETFs] = useState<ETF[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchETFs = async () => {
+      try {
+        const etfs = await getAllETFs();
+        setTopETFs(etfs.slice(0, 4));
+      } catch (error) {
+        console.error("Error fetching ETFs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchETFs();
+  }, []);
   
   return (
     <DashboardLayout>
@@ -88,7 +106,13 @@ export function Dashboard() {
             <AssetAllocation data={mockAssetData} />
           </div>
           <div className="lg:col-span-2">
-            <ETFMiniList etfs={topETFs} />
+            {loading ? (
+              <div className="flex items-center justify-center h-64">
+                <p>Loading ETFs...</p>
+              </div>
+            ) : (
+              <ETFMiniList etfs={topETFs} />
+            )}
           </div>
         </div>
       </div>

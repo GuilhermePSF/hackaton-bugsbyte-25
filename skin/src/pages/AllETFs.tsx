@@ -1,8 +1,7 @@
-
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { getAllETFs } from "@/data/mockEtfs";
 import { ETFCard } from "@/components/etf/ETFCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Filter, LayoutGrid, List, SortAsc, SortDesc } from 'lucide-react';
@@ -14,13 +13,31 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Toggle } from "@/components/ui/toggle";
+import { ETF } from "@/types/etf";
 
 export function AllETFs() {
-  const allETFs = getAllETFs();
+  const [allETFs, setAllETFs] = useState<ETF[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [sortBy, setSortBy] = useState<"price" | "name" | "change">("price");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+  useEffect(() => {
+    const fetchETFs = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllETFs();
+        setAllETFs(data);
+      } catch (error) {
+        console.error("Error fetching ETFs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchETFs();
+  }, []);
 
   const filteredETFs = allETFs
     .filter(etf => 
@@ -98,7 +115,11 @@ export function AllETFs() {
           </div>
         </div>
         
-        {viewMode === "grid" ? (
+        {loading ? (
+          <div className="flex items-center justify-center h-64">
+            <p>Loading ETFs...</p>
+          </div>
+        ) : viewMode === "grid" ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredETFs.map((etf) => (
               <ETFCard key={etf.id} etf={etf} showDetails={true} />
@@ -112,7 +133,7 @@ export function AllETFs() {
           </div>
         )}
         
-        {filteredETFs.length === 0 && (
+        {!loading && filteredETFs.length === 0 && (
           <div className="text-center py-12">
             <h3 className="text-lg font-medium">No ETFs found</h3>
             <p className="text-muted-foreground">Try adjusting your search criteria</p>
