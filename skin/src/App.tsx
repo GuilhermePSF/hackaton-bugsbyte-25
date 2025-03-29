@@ -11,6 +11,8 @@ import { Wallet } from "./pages/Wallet";
 import { AllETFs } from "./pages/AllETFs";
 import { ETFDetail } from "./pages/ETFDetail";
 import NotFound from "./pages/NotFound";
+import { Home } from "./pages/Home";
+import Index from "./pages/Index";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +23,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/index" element={<Index />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/cards" element={<Cards />} />
           <Route path="/wallet" element={<Wallet />} />

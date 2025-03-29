@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   Home, 
@@ -7,8 +6,6 @@ import {
   BarChart4,
   PlusCircle,
   Settings, 
-  Menu, 
-  ChevronLeft, 
   User,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -42,38 +39,22 @@ const NavItem = ({ icon, label, active, to, onClick }: NavItemProps) => {
 };
 
 export function Sidebar() {
-  const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const pathname = location.pathname;
 
   return (
-    <div
-      className={cn(
-        "flex flex-col h-screen border-r border-gray-200 bg-white transition-all duration-300",
-        collapsed ? "w-20" : "w-64"
-      )}
-    >
-      <div className="flex items-center justify-between p-4">
-        {!collapsed && (
-          <div className="text-xl font-bold text-uphold-primary">Uphold</div>
-        )}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setCollapsed(!collapsed)}
-          className="ml-auto"
-        >
-          {collapsed ? <Menu size={20} /> : <ChevronLeft size={20} />}
-        </Button>
+    <div className="flex flex-col h-screen border-r border-gray-200 bg-white w-64">
+      <div className="flex items-center p-4">
+        <div className="text-xl font-bold text-uphold-primary">MyFB</div>
       </div>
 
       <div className="flex-grow overflow-y-auto p-2">
         <nav className="space-y-1">
           <NavItem
-            to="/"
+            to="/dashboard"
             icon={<Home size={20} />}
             label="Dashboard"
-            active={pathname === "/"}
+            active={pathname === "/dashboard"}
           />
           <NavItem
             to="/wallet"
@@ -111,15 +92,13 @@ export function Sidebar() {
       <div className="p-4 border-t border-gray-200">
         <div className="flex items-center gap-3">
           <Avatar>
-            <AvatarImage src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" />
-            <AvatarFallback>JD</AvatarFallback>
+            <AvatarImage src="https://imgs.search.brave.com/bMVcSZUoOszhYORcayqMlnnt9ceUnnng1r56EEogs0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTA4/MzAzL3Bob3RvL2Fj/dG9yLW1hdHRoZXct/cGVycnktc3RhcnMt/YXMtY2hhbmRsZXIt/YmluZy1pbi1uYmNz/LWNvbWVkeS1zZXJp/ZXMtZnJpZW5kcy5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/UWFHaUtyTkgzOUVw/Qnh3eWFXWmE3dndu/VWNHdmh4c3BCX19O/ZENoTVAtOD0" alt="User" />
+            <AvatarFallback>CB</AvatarFallback>
           </Avatar>
-          {!collapsed && (
-            <div className="flex flex-col">
-              <span className="text-sm font-medium">John Doe</span>
-              <span className="text-xs text-muted-foreground">john.doe@example.com</span>
-            </div>
-          )}
+          <div className="flex flex-col">
+            <span className="text-sm font-medium">Chandler Bing</span>
+            <span className="text-xs text-muted-foreground">chandler.bing@example.com</span>
+          </div>
         </div>
       </div>
     </div>
