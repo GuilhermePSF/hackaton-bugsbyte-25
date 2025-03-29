@@ -30,7 +30,7 @@ export function Header() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="https://www.kindpng.com/imgv/mmhwxb_user-png-grey-transparent-png" alt="Chandler Bing" />
+                  <AvatarImage src="https://imgs.search.brave.com/bMVcSZUoOszhYORcayqMlnnt9ceUnnng1r56EEogs0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTA4/MzAzL3Bob3RvL2Fj/dG9yLW1hdHRoZXct/cGVycnktc3RhcnMt/YXMtY2hhbmRsZXIt/YmluZy1pbi1uYmNz/LWNvbWVkeS1zZXJp/ZXMtZnJpZW5kcy5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/UWFHaUtyTkgzOUVw/Qnh3eWFXWmE3dndu/VWNHdmh4c3BCX19O/ZENoTVAtOD0" alt="Chandler Bing" />
                   <AvatarFallback>CB</AvatarFallback>
                 </Avatar>
               </Button>

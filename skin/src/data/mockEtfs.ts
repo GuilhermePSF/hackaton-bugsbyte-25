@@ -21,7 +21,7 @@ export const mockETFs: ETF[] = [
         id: "btc",
         name: "Bitcoin",
         symbol: "BTC",
-        imageUrl: "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
+        imageUrl: "https://as2.ftcdn.net/v2/jpg/02/20/82/37/1000_F_220823745_LdWP6XNZkeNMifrl7a9aKUfCUZpRGRnS.jpg",
         allocation: 45.2,
         price: 58432.15,
         change: {
