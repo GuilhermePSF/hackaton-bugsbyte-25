@@ -7,6 +7,9 @@ defmodule BonesWeb.Router do
 
   scope "/api", BonesWeb do
     pipe_through :api
+    resources "/basket_association", BasketAssociationController, except: [:new, :edit]
+    resources "/coins", CoinController, except: [:new, :edit]
+    resources "/etfs", EtfController, except: [:new, :edit]
   end
 
   # Enable Swoosh mailbox preview in development

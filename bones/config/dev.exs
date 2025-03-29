@@ -2,13 +2,15 @@ import Config
 
 # Configure your database
 config :bones, Bones.Repo,
-  username: "root",
-  password: "",
-  hostname: "localhost",
-  database: "bones_dev",
-  stacktrace: true,
+  username: "admin",
+  password: "6Dgo7RdkjCI0W17Dzc4NNhSCCZUcks8P",
+  hostname: "svc-ea99460f-1b8c-4506-b7d2-d592ad84de6b-dml.aws-paris-2.svc.singlestore.com",
+  database: "database",
+  ssl: [cacertfile: "certs/singlestore_bundle.pem"],
+  port: 3306,
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  migration_lock: false,
+  stacktrace: true
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
