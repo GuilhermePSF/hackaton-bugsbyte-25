@@ -1,4 +1,4 @@
-
+import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { getUserETFs } from "@/data/mockEtfs";
 import { ETFCard } from "@/components/etf/ETFCard";
@@ -8,18 +8,36 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ETF } from "@/types/etf";
 import { getETFs} from "@/lib/api";
 
-export function Wallet() {
-  const userEtfs = getUserETFs();
+
   const totalBalance =  1000/* userEtfs.reduce((sum, etf) => sum + etf.price, 0); */
   const positiveChange = 2/* userEtfs.filter(etf => etf.change.isPositive).length; */
-  const negativeChange = userEtfs.length - positiveChange;
+
+export function Wallet() {
+  const [etfs, setEtfs] = useState<ETF[]>([]);
+
+  useEffect(() => {
+    const fetchUserETFs = async () => {
+      try {
+        const eTf = await getUserETFs();
+        setEtfs(eTf);
+      } catch (error) {
+        console.error("Error fetching user ETFs:", error);
+      } 
+    };
+
+    fetchUserETFs();
+  }, []);
+
+  const totalBalance =  1000 /* userEtfs.reduce((sum, etf) => sum + etf.price, 0); */
+  const positiveChange = 2 /* userEtfs.filter(etf => etf.change.isPositive).length; */
+  const negativeChange = 1 /* userEtfs.length - positiveChange; */
 
   /* let etfs: ETF[] = [];
   getETFs().then((data) => {
     etfs = data;
   }) */;
    // ETFS temporarios ate haver informação da API
-  const etfs: ETF [] = [
+  const etfS: ETF [] = [
     {
       id: "1",
       name: "Global Tech ETF",
@@ -71,7 +89,7 @@ export function Wallet() {
             <CardContent>
               <div className="text-3xl font-bold">${totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
               <div className="text-sm text-muted-foreground mt-1">
-                {userEtfs.length} ETFs in portfolio
+                {etfs.length} ETFs in portfolio
               </div>
             </CardContent>
           </Card>
@@ -116,7 +134,7 @@ export function Wallet() {
 
         <h2 className="text-xl font-semibold mt-8">My ETF Investments</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {etfs.map((etf) => (
+          {etfS.map((etf) => (
             <ETFCard key={etf.id} etf={etf} showDetails={true} />
           ))}
         </div>

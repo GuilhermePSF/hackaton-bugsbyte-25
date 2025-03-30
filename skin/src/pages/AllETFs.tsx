@@ -1,7 +1,6 @@
-
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { ETFCard } from "@/components/etf/ETFCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Filter, LayoutGrid, List, SortAsc, SortDesc } from 'lucide-react';
@@ -22,11 +21,22 @@ export function AllETFs() {
   const [sortBy, setSortBy] = useState<"name" | "growth">("growth");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  /* let etfs: ETF[] = [];
-  getETFs().then((data) => {
-    etfs = data;
-  });  */
-  const etfs: ETF [] = [
+  const [etfs, setEtfs] = useState<ETF[]>([]); // TODOOO
+  
+  useEffect(() => {
+    const fetchUserETFs = async () => {
+      try {
+        const eTf = await getETFs();
+        setEtfs(eTf);
+      } catch (error) {
+        console.error("Error fetching user ETFs:", error);
+      } 
+    };
+  
+      fetchUserETFs();
+    }, []);
+
+  const etfS: ETF [] = [
     {
       id: "1",
       name: "Global Tech ETF",
@@ -56,20 +66,21 @@ export function AllETFs() {
       name: "Emerging Markets ETF",
       short_name: "EME",
       growth: 10.1,
-    },
+    },  
   ];
 
-  const filteredETFs = etfs.filter((etf) => {
+  const filteredETFs = etfS.filter((etf) => {
     return etf.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       etf.short_name.toLowerCase().includes(searchTerm.toLowerCase());
   }).sort((a, b) => {
     if (sortBy === "name") {
       return sortOrder === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
     } else if (sortBy === "growth") {
-      return sortOrder === "asc" ? a.growth - b.growth : b.growth - a.growth;
+      return sortOrder === "asc" ? b.growth - a.growth : a.growth - b.growth;
     }
     return 0;
   });
+
 
 
 
@@ -115,9 +126,8 @@ export function AllETFs() {
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="price">Price</SelectItem>
                 <SelectItem value="name">Name</SelectItem>
-                <SelectItem value="change">Performance</SelectItem>
+                <SelectItem value="growth">Performance</SelectItem>
               </SelectContent>
             </Select>
             
@@ -144,7 +154,7 @@ export function AllETFs() {
           </div>
         )}
         
-        {filteredETFs.length === 0 && (
+        { filteredETFs.length === 0 && (
           <div className="text-center py-12">
             <h3 className="text-lg font-medium">No ETFs found</h3>
             <p className="text-muted-foreground">Try adjusting your search criteria</p>

@@ -1,4 +1,5 @@
 
+import { useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { BalanceCard } from "@/components/dashboard/BalanceCard";
 import { AssetAllocation } from "@/components/dashboard/AssetAllocation";
@@ -36,7 +37,6 @@ const mockAssetData = [
 ];
 
 export function Dashboard() {
-
   
   
   let etfs: ETF[] = [];
@@ -136,7 +136,7 @@ export function Dashboard() {
             <AssetAllocation data={mockAssetData} />
           </div>
           <div className="lg:col-span-2">
-            <ETFMiniList etfs={sortedETF} />
+            <ETFMiniList etfs={sortedETF}/>
           </div>
         </div>
       </div>

@@ -1,0 +1,579 @@
+
+[
+    {
+      "id": "crypto-innovation",
+      "name": "Crypto Innovation ETF",
+      "symbol": "BTCI",
+      "description": "A diversified portfolio of leading cryptocurrencies that are at the forefront of blockchain innovation and adoption.",
+      "price": 243.78,
+      "change": {
+        "value": 12.43,
+        "percentage": 5.37,
+        "isPositive": true
+      },
+      "marketCap": 1458000000,
+      "volume24h": 124500000,
+      "imageUrl": "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=200&auto=format&fit=crop",
+      "holdings": [
+        {   
+          "id": "btc",
+          "name": "",
+          "symbol": "BTC",
+          "imageUrl": "https://static.crypto.com/token/icons/bitcoin/color_icon.png",
+          "allocation": 45.2,
+          "price": 58432.15,
+          "change": {
+            "percentage": 3.2,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "eth",
+          "name": "",
+          "symbol": "ETH",
+          "imageUrl": "https://static.crypto.com/token/icons/ethereum/color_icon.png",
+          "allocation": 30.5,
+          "price": 2942.67,
+          "change": {
+            "percentage": 6.8,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "sol",
+          "name": "",
+          "symbol": "SOL",
+          "imageUrl": "https://static.crypto.com/token/icons/solana/color_icon.png",
+          "allocation": 8.3,
+          "price": 102.54,
+          "change": {
+            "percentage": 11.2,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "avax",
+          "name": "Avalanche",
+          "symbol": "AVAX",
+          "imageUrl": "https://dynamic-assets.coinbase.com/35f69b8c1f2c2771170e72bdb61a986b17f7d8d20c5e10bc4fc347fe301e6137960c01c31ebbac976b9fd933bf95344d751e052a27eee0dc868f8c036bb2632a/asset_icons/d8a464a40be5c1eba32428ed1d815c878d4933231193edfa483957bd3cbfe750.png",
+          "allocation": 5.8,
+          "price": 35.28,
+          "change": {
+            "percentage": 7.5,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "dot",
+          "name": "Polkadot",
+          "symbol": "DOT",
+          "imageUrl": "https://dynamic-assets.coinbase.com/9957ebecd9f4d6a2a4cf877577364e8c9bfb937c7f8385e153fc878e9ed3766a563cdd1a80903f465f50b4edfb5089251e045d362a8fbe5b888b9de18bfcc09a/asset_icons/f786d2f3573f77db841b406bf607ac7ddfe70d533acc6d05f2cb3cb3eab11925.png",
+          "allocation": 5.2,
+          "price": 16.35,
+          "change": {
+            "percentage": 2.1,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "link",
+          "name": "Chainlink",
+          "symbol": "LINK",
+          "imageUrl": "https://dynamic-assets.coinbase.com/37ef8491789cea02a81cf80394ed3a4b5d9c408a969fd6bea76b403e04e7fd9cef623384d16a60f3c39e052006bc79522d902108764ce584466674a4da6cb316/asset_icons/c551d7b5ffe48f1d72e726ab8932ad98758ab414062e5e07479096089c547220.png",
+          "allocation": 5.0,
+          "price": 18.72,
+          "change": {
+            "percentage": 4.8,
+            "isPositive": true
+          }
+        }
+      ],
+      "historicalData": [
+        { "date": "Jan", "value": 100 },
+        { "date": "Feb", "value": 110 },
+        { "date": "Mar", "value": 105 },
+        { "date": "Apr", "value": 120 },
+        { "date": "May", "value": 135 },
+        { "date": "Jun", "value": 145 },
+        { "date": "Jul", "value": 160 },
+        { "date": "Aug", "value": 170 },
+        { "date": "Sep", "value": 185 },
+        { "date": "Oct", "value": 200 },
+        { "date": "Nov", "value": 220 },
+        { "date": "Dec", "value": 243.78 }
+      ]
+    },
+    {
+      "id": "defi-titans",
+      "name": "DeFi Titans ETF",
+      "symbol": "DEFI",
+      "description": "Exposure to the top decentralized finance (DeFi) protocols revolutionizing financial services through blockchain technology.",
+      "price": 178.45,
+      "change": {
+        "value": -5.32,
+        "percentage": 2.89,
+        "isPositive": false
+      },
+      "marketCap": 835000000,
+      "volume24h": 92800000,
+      "imageUrl": "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=200&auto=format&fit=crop",
+      "holdings": [
+        {
+          "id": "uni",
+          "name": "Uniswap",
+          "symbol": "UNI",
+          "imageUrl": "https://cryptologos.cc/logos/uniswap-uni-logo.png",
+          "allocation": 20.1,
+          "price": 18.45,
+          "change": {
+            "percentage": -1.5,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "aave",
+          "name": "Aave",
+          "symbol": "AAVE",
+          "imageUrl": "https://cryptologos.cc/logos/aave-aave-logo.png",
+          "allocation": 18.3,
+          "price": 87.21,
+          "change": {
+            "percentage": -2.3,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "mkr",
+          "name": "Maker",
+          "symbol": "MKR",
+          "imageUrl": "https://cryptologos.cc/logos/maker-mkr-logo.png",
+          "allocation": 15.4,
+          "price": 1845.32,
+          "change": {
+            "percentage": -3.1,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "comp",
+          "name": "Compound",
+          "symbol": "COMP",
+          "imageUrl": "https://cryptologos.cc/logos/compound-comp-logo.png",
+          "allocation": 14.2,
+          "price": 42.86,
+          "change": {
+            "percentage": -4.2,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "sushi",
+          "name": "SushiSwap",
+          "symbol": "SUSHI",
+          "imageUrl": "https://cryptologos.cc/logos/sushiswap-sushi-logo.png",
+          "allocation": 12.8,
+          "price": 1.32,
+          "change": {
+            "percentage": -2.1,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "crv",
+          "name": "Curve DAO",
+          "symbol": "CRV",
+          "imageUrl": "https://cryptologos.cc/logos/curve-dao-token-crv-logo.png",
+          "allocation": 10.5,
+          "price": 0.72,
+          "change": {
+            "percentage": -5.3,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "snx",
+          "name": "Synthetix",
+          "symbol": "SNX",
+          "imageUrl": "https://cryptologos.cc/logos/synthetix-network-token-snx-logo.png",
+          "allocation": 8.7,
+          "price": 2.45,
+          "change": {
+            "percentage": -3.8,
+            "isPositive": false
+          }
+        }
+      ],
+      "historicalData": [
+        { "date": "Jan", "value": 200 },
+        { "date": "Feb", "value": 210 },
+        { "date": "Mar", "value": 205 },
+        { "date": "Apr", "value": 195 },
+        { "date": "May", "value": 190 },
+        { "date": "Jun", "value": 185 },
+        { "date": "Jul", "value": 175 },
+        { "date": "Aug", "value": 180 },
+        { "date": "Sep", "value": 185 },
+        { "date": "Oct", "value": 190 },
+        { "date": "Nov", "value": 183 },
+        { "date": "Dec", "value": 178.45 }
+      ]
+    },
+    {
+      "id": "metaverse-frontier",
+      "name": "Metaverse Frontier ETF",
+      "symbol": "META",
+      "description": "Investment in blockchain platforms and tokens powering the emerging metaverse and virtual worlds.",
+      "price": 132.21,
+      "change": {
+        "value": 8.54,
+        "percentage": 6.91,
+        "isPositive": true
+      },
+      "marketCap": 621000000,
+      "volume24h": 87300000,
+      "imageUrl": "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?q=80&w=200&auto=format&fit=crop",
+      "holdings": [
+        {
+          "id": "mana",
+          "name": "Decentraland",
+          "symbol": "MANA",
+          "imageUrl": "https://cryptologos.cc/logos/decentraland-mana-logo.png",
+          "allocation": 22.3,
+          "price": 0.67,
+          "change": {
+            "percentage": 7.8,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "sand",
+          "name": "The Sandbox",
+          "symbol": "SAND",
+          "imageUrl": "https://cryptologos.cc/logos/the-sandbox-sand-logo.png",
+          "allocation": 21.5,
+          "price": 0.85,
+          "change": {
+            "percentage": 8.2,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "axs",
+          "name": "Axie Infinity",
+          "symbol": "AXS",
+          "imageUrl": "https://cryptologos.cc/logos/axie-infinity-axs-logo.png",
+          "allocation": 15.8,
+          "price": 8.45,
+          "change": {
+            "percentage": 6.5,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "enj",
+          "name": "Enjin Coin",
+          "symbol": "ENJ",
+          "imageUrl": "https://cryptologos.cc/logos/enjin-coin-enj-logo.png",
+          "allocation": 12.7,
+          "price": 0.45,
+          "change": {
+            "percentage": 5.3,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "ilv",
+          "name": "Illuvium",
+          "symbol": "ILV",
+          "imageUrl": "https://cryptologos.cc/logos/illuvium-ilv-logo.png",
+          "allocation": 10.2,
+          "price": 105.78,
+          "change": {
+            "percentage": 9.1,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "gala",
+          "name": "Gala",
+          "symbol": "GALA",
+          "imageUrl": "https://cryptologos.cc/logos/gala-gala-logo.png",
+          "allocation": 9.8,
+          "price": 0.045,
+          "change": {
+            "percentage": 7.2,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "theta",
+          "name": "Theta Network",
+          "symbol": "THETA",
+          "imageUrl": "https://cryptologos.cc/logos/theta-network-theta-logo.png",
+          "allocation": 7.7,
+          "price": 1.32,
+          "change": {
+            "percentage": 4.9,
+            "isPositive": true
+          }
+        }
+      ],
+      "historicalData": [
+        { "date": "Jan", "value": 80 },
+        { "date": "Feb", "value": 85 },
+        { "date": "Mar", "value": 90 },
+        { "date": "Apr", "value": 88 },
+        { "date": "May", "value": 95 },
+        { "date": "Jun", "value": 100 },
+        { "date": "Jul", "value": 110 },
+        { "date": "Aug", "value": 115 },
+        { "date": "Sep", "value": 120 },
+        { "date": "Oct", "value": 125 },
+        { "date": "Nov", "value": 124 },
+        { "date": "Dec", "value": 132.21 }
+      ]
+    },
+    {
+      "id": "smart-contract-leaders",
+      "name": "Smart Contract Leaders ETF",
+      "symbol": "SCTF",
+      "description": "Focus on platforms enabling smart contracts, which are programmable agreements that execute automatically when conditions are met.",
+      "price": 156.32,
+      "change": {
+        "value": 4.21,
+        "percentage": 2.77,
+        "isPositive": true
+      },
+      "marketCap": 743000000,
+      "volume24h": 68200000,
+      "imageUrl": "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=200&auto=format&fit=crop",
+      "holdings": [
+        {
+          "id": "eth",
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "imageUrl": "https://cryptologos.cc/logos/ethereum-eth-logo.png",
+          "allocation": 35.2,
+          "price": 2942.67,
+          "change": {
+            "percentage": 2.8,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "ada",
+          "name": "Cardano",
+          "symbol": "ADA",
+          "imageUrl": "https://cryptologos.cc/logos/cardano-ada-logo.png",
+          "allocation": 15.8,
+          "price": 0.57,
+          "change": {
+            "percentage": 1.5,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "sol",
+          "name": "Solana",
+          "symbol": "SOL",
+          "imageUrl": "https://cryptologos.cc/logos/solana-sol-logo.png",
+          "allocation": 14.3,
+          "price": 102.54,
+          "change": {
+            "percentage": 3.2,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "avax",
+          "name": "Avalanche",
+          "symbol": "AVAX",
+          "imageUrl": "https://cryptologos.cc/logos/avalanche-avax-logo.png",
+          "allocation": 10.5,
+          "price": 35.28,
+          "change": {
+            "percentage": 4.1,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "dot",
+          "name": "Polkadot",
+          "symbol": "DOT",
+          "imageUrl": "https://cryptologos.cc/logos/polkadot-new-dot-logo.png",
+          "allocation": 9.8,
+          "price": 16.35,
+          "change": {
+            "percentage": 2.3,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "near",
+          "name": "NEAR Protocol",
+          "symbol": "NEAR",
+          "imageUrl": "https://cryptologos.cc/logos/near-protocol-near-logo.png",
+          "allocation": 7.5,
+          "price": 6.78,
+          "change": {
+            "percentage": 3.8,
+            "isPositive": true
+          }
+        },
+        {
+          "id": "algo",
+          "name": "Algorand",
+          "symbol": "ALGO",
+          "imageUrl": "https://cryptologos.cc/logos/algorand-algo-logo.png",
+          "allocation": 6.9,
+          "price": 0.32,
+          "change": {
+            "percentage": 1.2,
+            "isPositive": true
+          }
+        }
+      ],
+      "historicalData": [
+        { "date": "Jan", "value": 120 },
+        { "date": "Feb", "value": 125 },
+        { "date": "Mar", "value": 130 },
+        { "date": "Apr", "value": 135 },
+        { "date": "May", "value": 140 },
+        { "date": "Jun", "value": 145 },
+        { "date": "Jul", "value": 148 },
+        { "date": "Aug", "value": 150 },
+        { "date": "Sep", "value": 152 },
+        { "date": "Oct", "value": 153 },
+        { "date": "Nov", "value": 151 },
+        { "date": "Dec", "value": 156.32 }
+      ]
+    },
+    {
+      "id": "web3-pioneers",
+      "name": "Web3 Pioneers ETF",
+      "symbol": "WEB3",
+      "description": "Collection of cryptocurrencies building the decentralized internet of the future, including infrastructure, data storage, and identity solutions.",
+      "price": 95.67,
+      "change": {
+        "value": -2.35,
+        "percentage": 2.40,
+        "isPositive": false
+      },
+      "marketCap": 412000000,
+      "volume24h": 47600000,
+      "imageUrl": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=200&auto=format&fit=crop",
+      "holdings": [
+        {
+          "id": "fil",
+          "name": "Filecoin",
+          "symbol": "FIL",
+          "imageUrl": "https://cryptologos.cc/logos/filecoin-fil-logo.png",
+          "allocation": 18.5,
+          "price": 5.87,
+          "change": {
+            "percentage": -2.5,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "ar",
+          "name": "Arweave",
+          "symbol": "AR",
+          "imageUrl": "https://cryptologos.cc/logos/arweave-ar-logo.png",
+          "allocation": 15.8,
+          "price": 18.21,
+          "change": {
+            "percentage": -1.8,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "grt",
+          "name": "The Graph",
+          "symbol": "GRT",
+          "imageUrl": "https://cryptologos.cc/logos/the-graph-grt-logo.png",
+          "allocation": 14.2,
+          "price": 0.17,
+          "change": {
+            "percentage": -3.1,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "ocean",
+          "name": "Ocean Protocol",
+          "symbol": "OCEAN",
+          "imageUrl": "https://cryptologos.cc/logos/ocean-protocol-ocean-logo.png",
+          "allocation": 12.7,
+          "price": 0.52,
+          "change": {
+            "percentage": -2.2,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "livepeer",
+          "name": "Livepeer",
+          "symbol": "LPT",
+          "imageUrl": "https://cryptologos.cc/logos/livepeer-lpt-logo.png",
+          "allocation": 11.5,
+          "price": 12.34,
+          "change": {
+            "percentage": -1.5,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "bat",
+          "name": "Basic Attention Token",
+          "symbol": "BAT",
+          "imageUrl": "https://cryptologos.cc/logos/basic-attention-token-bat-logo.png",
+          "allocation": 10.8,
+          "price": 0.32,
+          "change": {
+            "percentage": -2.8,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "ankr",
+          "name": "Ankr",
+          "symbol": "ANKR",
+          "imageUrl": "https://cryptologos.cc/logos/ankr-ankr-logo.png",
+          "allocation": 8.5,
+          "price": 0.045,
+          "change": {
+            "percentage": -3.2,
+            "isPositive": false
+          }
+        },
+        {
+          "id": "rndr",
+          "name": "Render Token",
+          "symbol": "RNDR",
+          "imageUrl": "https://cryptologos.cc/logos/render-token-rndr-logo.png",
+          "allocation": 8.0,
+          "price": 7.52,
+          "change": {
+            "percentage": -2.7,
+            "isPositive": false
+          }
+        }
+      ],
+      "historicalData": [
+        { "date": "Jan", "value": 105 },
+        { "date": "Feb", "value": 108 },
+        { "date": "Mar", "value": 110 },
+        { "date": "Apr", "value": 107 },
+        { "date": "May", "value": 105 },
+        { "date": "Jun", "value": 103 },
+        { "date": "Jul", "value": 100 },
+        { "date": "Aug", "value": 98 },
+        { "date": "Sep", "value": 97 },
+        { "date": "Oct", "value": 99 },
+        { "date": "Nov", "value": 98 },
+        { "date": "Dec", "value": 95.67 }
+      ]
+    }
+  ]
+  

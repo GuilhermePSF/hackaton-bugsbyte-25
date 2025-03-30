@@ -7,12 +7,43 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingDown, TrendingUp, ExternalLink, Share2, BookmarkPlus } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ETF } from "@/types/etf";
 import { getETFs } from "@/lib/api";
+import { useEffect, useState } from "react";
+import { ETF } from "@/types/etf";
 
 export function ETFDetail() {
   const { id } = useParams<{ id: string }>();
-  const etf = getETFById(id || "");
+  const [etf, setEtf] = useState<ETF | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // This would be replaced with an API call in a real application
+    const fetchETF = async () => {
+      setLoading(true);
+      try {
+        const data = await getETFById(id || "");
+        setEtf(data || null);
+      } catch (error) {
+        console.error("Error fetching ETF data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchETF();
+    }
+  }, [id]);
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center h-[60vh]">
+          <div className="text-xl">Loading ETF data...</div>
+        </div>
+      </DashboardLayout>
+    );
+  }
 
   let etfs: ETF[] = [];
     getETFs().then((data) => {
@@ -109,7 +140,7 @@ Liquidity: Traded like stocks, these ETFs offer high liquidity, allowing investo
         </div>
         
         <div>
-          <HoldingsList holdings={etf.holdings} />
+          <HoldingsList holdings={etf.holdings} etfId={etf.id} />
         </div>
       </div>
     </DashboardLayout>
