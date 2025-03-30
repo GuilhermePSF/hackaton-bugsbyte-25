@@ -49,8 +49,15 @@ defmodule BonesWeb.BasketAssociationControllerTest do
   describe "update basket_association" do
     setup [:create_basket_association]
 
-    test "renders basket_association when data is valid", %{conn: conn, basket_association: %BasketAssociation{id: id} = basket_association} do
-      conn = put(conn, ~p"/api/basket_association/#{basket_association}", basket_association: @update_attrs)
+    test "renders basket_association when data is valid", %{
+      conn: conn,
+      basket_association: %BasketAssociation{id: id} = basket_association
+    } do
+      conn =
+        put(conn, ~p"/api/basket_association/#{basket_association}",
+          basket_association: @update_attrs
+        )
+
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get(conn, ~p"/api/basket_association/#{id}")
@@ -62,8 +69,15 @@ defmodule BonesWeb.BasketAssociationControllerTest do
              } = json_response(conn, 200)["data"]
     end
 
-    test "renders errors when data is invalid", %{conn: conn, basket_association: basket_association} do
-      conn = put(conn, ~p"/api/basket_association/#{basket_association}", basket_association: @invalid_attrs)
+    test "renders errors when data is invalid", %{
+      conn: conn,
+      basket_association: basket_association
+    } do
+      conn =
+        put(conn, ~p"/api/basket_association/#{basket_association}",
+          basket_association: @invalid_attrs
+        )
+
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -71,7 +85,10 @@ defmodule BonesWeb.BasketAssociationControllerTest do
   describe "delete basket_association" do
     setup [:create_basket_association]
 
-    test "deletes chosen basket_association", %{conn: conn, basket_association: basket_association} do
+    test "deletes chosen basket_association", %{
+      conn: conn,
+      basket_association: basket_association
+    } do
       conn = delete(conn, ~p"/api/basket_association/#{basket_association}")
       assert response(conn, 204)
 

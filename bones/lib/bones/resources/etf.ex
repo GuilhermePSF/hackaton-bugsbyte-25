@@ -6,6 +6,8 @@ defmodule Bones.Resources.Etf do
   @foreign_key_type :binary_id
   schema "etfs" do
     field :name, :string
+    field :short_name, :string
+    field :growth, :float
 
     timestamps(type: :utc_datetime)
   end
@@ -13,7 +15,7 @@ defmodule Bones.Resources.Etf do
   @doc false
   def changeset(etf, attrs) do
     etf
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:name, :short_name, :growth])
+    |> validate_required([:name, :short_name, :growth])
   end
 end

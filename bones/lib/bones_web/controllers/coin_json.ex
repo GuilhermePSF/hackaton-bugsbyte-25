@@ -5,21 +5,23 @@ defmodule BonesWeb.CoinJSON do
   Renders a list of coins.
   """
   def index(%{coins: coins}) do
-    %{data: for(coin <- coins, do: data(coin))}
+    for(coin <- coins, do: show_coin(coin))
   end
 
   @doc """
   Renders a single coin.
   """
   def show(%{coin: coin}) do
-    %{data: data(coin)}
+    show_coin(coin)
   end
 
-  defp data(%Coin{} = coin) do
+  def show_coin(%Coin{} = coin) do
     %{
       id: coin.id,
       name: coin.name,
-      short_name: coin.short_name
+      short_name: coin.short_name,
+      price: coin.price,
+      growth: coin.growth
     }
   end
 end

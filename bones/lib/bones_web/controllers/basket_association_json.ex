@@ -19,7 +19,8 @@ defmodule BonesWeb.BasketAssociationJSON do
     %{
       id: basket_association.id,
       etf_id: basket_association.etf_id,
-      moeda_id: basket_association.moeda_id
+      moeda_id: basket_association.moeda_id,
+      percentage: basket_association.percentage
     }
   end
 end

@@ -12,7 +12,8 @@ defmodule BonesWeb.BasketAssociationController do
   end
 
   def create(conn, %{"basket_association" => basket_association_params}) do
-    with {:ok, %BasketAssociation{} = basket_association} <- Resources.create_basket_association(basket_association_params) do
+    with {:ok, %BasketAssociation{} = basket_association} <-
+           Resources.create_basket_association(basket_association_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", ~p"/api/basket_association/#{basket_association}")
@@ -28,7 +29,8 @@ defmodule BonesWeb.BasketAssociationController do
   def update(conn, %{"id" => id, "basket_association" => basket_association_params}) do
     basket_association = Resources.get_basket_association!(id)
 
-    with {:ok, %BasketAssociation{} = basket_association} <- Resources.update_basket_association(basket_association, basket_association_params) do
+    with {:ok, %BasketAssociation{} = basket_association} <-
+           Resources.update_basket_association(basket_association, basket_association_params) do
       render(conn, :show, basket_association: basket_association)
     end
   end

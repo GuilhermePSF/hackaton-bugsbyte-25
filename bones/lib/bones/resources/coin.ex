@@ -7,6 +7,8 @@ defmodule Bones.Resources.Coin do
   schema "coins" do
     field :name, :string
     field :short_name, :string
+    field :price, :float
+    field :growth, :float
 
     timestamps(type: :utc_datetime)
   end
@@ -14,7 +16,7 @@ defmodule Bones.Resources.Coin do
   @doc false
   def changeset(coin, attrs) do
     coin
-    |> cast(attrs, [:name, :short_name])
-    |> validate_required([:name, :short_name])
+    |> cast(attrs, [:name, :short_name, :price, :growth])
+    |> validate_required([:name, :short_name, :price, :growth])
   end
 end

@@ -21,9 +21,14 @@ defmodule Bones.ResourcesTest do
     end
 
     test "create_basket_association/1 with valid data creates a basket_association" do
-      valid_attrs = %{etf_id: "7488a646-e31f-11e4-aace-600308960662", moeda_id: "7488a646-e31f-11e4-aace-600308960662"}
+      valid_attrs = %{
+        etf_id: "7488a646-e31f-11e4-aace-600308960662",
+        moeda_id: "7488a646-e31f-11e4-aace-600308960662"
+      }
 
-      assert {:ok, %BasketAssociation{} = basket_association} = Resources.create_basket_association(valid_attrs)
+      assert {:ok, %BasketAssociation{} = basket_association} =
+               Resources.create_basket_association(valid_attrs)
+
       assert basket_association.etf_id == "7488a646-e31f-11e4-aace-600308960662"
       assert basket_association.moeda_id == "7488a646-e31f-11e4-aace-600308960662"
     end
@@ -34,23 +39,35 @@ defmodule Bones.ResourcesTest do
 
     test "update_basket_association/2 with valid data updates the basket_association" do
       basket_association = basket_association_fixture()
-      update_attrs = %{etf_id: "7488a646-e31f-11e4-aace-600308960668", moeda_id: "7488a646-e31f-11e4-aace-600308960668"}
 
-      assert {:ok, %BasketAssociation{} = basket_association} = Resources.update_basket_association(basket_association, update_attrs)
+      update_attrs = %{
+        etf_id: "7488a646-e31f-11e4-aace-600308960668",
+        moeda_id: "7488a646-e31f-11e4-aace-600308960668"
+      }
+
+      assert {:ok, %BasketAssociation{} = basket_association} =
+               Resources.update_basket_association(basket_association, update_attrs)
+
       assert basket_association.etf_id == "7488a646-e31f-11e4-aace-600308960668"
       assert basket_association.moeda_id == "7488a646-e31f-11e4-aace-600308960668"
     end
 
     test "update_basket_association/2 with invalid data returns error changeset" do
       basket_association = basket_association_fixture()
-      assert {:error, %Ecto.Changeset{}} = Resources.update_basket_association(basket_association, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Resources.update_basket_association(basket_association, @invalid_attrs)
+
       assert basket_association == Resources.get_basket_association!(basket_association.id)
     end
 
     test "delete_basket_association/1 deletes the basket_association" do
       basket_association = basket_association_fixture()
       assert {:ok, %BasketAssociation{}} = Resources.delete_basket_association(basket_association)
-      assert_raise Ecto.NoResultsError, fn -> Resources.get_basket_association!(basket_association.id) end
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Resources.get_basket_association!(basket_association.id)
+      end
     end
 
     test "change_basket_association/1 returns a basket_association changeset" do

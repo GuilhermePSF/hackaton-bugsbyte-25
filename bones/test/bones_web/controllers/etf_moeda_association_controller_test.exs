@@ -49,8 +49,15 @@ defmodule BonesWeb.EtfMoedaAssociationControllerTest do
   describe "update etf_moeda_association" do
     setup [:create_etf_moeda_association]
 
-    test "renders etf_moeda_association when data is valid", %{conn: conn, etf_moeda_association: %EtfMoedaAssociation{id: id} = etf_moeda_association} do
-      conn = put(conn, ~p"/api/etf_moeda_associations/#{etf_moeda_association}", etf_moeda_association: @update_attrs)
+    test "renders etf_moeda_association when data is valid", %{
+      conn: conn,
+      etf_moeda_association: %EtfMoedaAssociation{id: id} = etf_moeda_association
+    } do
+      conn =
+        put(conn, ~p"/api/etf_moeda_associations/#{etf_moeda_association}",
+          etf_moeda_association: @update_attrs
+        )
+
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get(conn, ~p"/api/etf_moeda_associations/#{id}")
@@ -62,8 +69,15 @@ defmodule BonesWeb.EtfMoedaAssociationControllerTest do
              } = json_response(conn, 200)["data"]
     end
 
-    test "renders errors when data is invalid", %{conn: conn, etf_moeda_association: etf_moeda_association} do
-      conn = put(conn, ~p"/api/etf_moeda_associations/#{etf_moeda_association}", etf_moeda_association: @invalid_attrs)
+    test "renders errors when data is invalid", %{
+      conn: conn,
+      etf_moeda_association: etf_moeda_association
+    } do
+      conn =
+        put(conn, ~p"/api/etf_moeda_associations/#{etf_moeda_association}",
+          etf_moeda_association: @invalid_attrs
+        )
+
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -71,7 +85,10 @@ defmodule BonesWeb.EtfMoedaAssociationControllerTest do
   describe "delete etf_moeda_association" do
     setup [:create_etf_moeda_association]
 
-    test "deletes chosen etf_moeda_association", %{conn: conn, etf_moeda_association: etf_moeda_association} do
+    test "deletes chosen etf_moeda_association", %{
+      conn: conn,
+      etf_moeda_association: etf_moeda_association
+    } do
       conn = delete(conn, ~p"/api/etf_moeda_associations/#{etf_moeda_association}")
       assert response(conn, 204)
 

@@ -6,6 +6,7 @@ defmodule Bones.Repo.Migrations.CreateBasketAssociation do
       add :id, :binary_id, primary_key: true
       add :etf_id, :uuid
       add :moeda_id, :uuid
+      add :percentage, :float
 
       timestamps(type: :utc_datetime)
     end
