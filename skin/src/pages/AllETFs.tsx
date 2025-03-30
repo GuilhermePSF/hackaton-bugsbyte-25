@@ -12,7 +12,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Toggle } from "@/components/ui/toggle";
-import { ETF } from "@/types/etf";
 import {getETFs} from "@/lib/api";
 
 export function AllETFs() {
@@ -21,7 +20,7 @@ export function AllETFs() {
   const [sortBy, setSortBy] = useState<"name" | "growth">("growth");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  const [etfs, setEtfs] = useState<ETF[]>([]); // TODOOO
+  const [etfs, setEtfs] = useState([]);
   
   useEffect(() => {
     const fetchUserETFs = async () => {
@@ -35,54 +34,8 @@ export function AllETFs() {
   
       fetchUserETFs();
     }, []);
-
-  const etfS: ETF [] = [
-    {
-      id: "1",
-      name: "Global Tech ETF",
-      short_name: "GTE",
-      growth: 12.5,
-    },
-    {
-      id: "2",
-      name: "Sustainable Energy ETF",
-      short_name: "SEE",
-      growth: 8.3,
-    },
-    {
-      id: "3",
-      name: "Healthcare Leaders ETF",
-      short_name: "HLE",
-      growth: 15.2,
-    },
-    {
-      id: "4",
-      name: "Real Estate ETF",
-      short_name: "REE",
-      growth: 6.8,
-    },
-    {
-      id: "5",
-      name: "Emerging Markets ETF",
-      short_name: "EME",
-      growth: 10.1,
-    },  
-  ];
-
-  const filteredETFs = etfS.filter((etf) => {
-    return etf.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      etf.short_name.toLowerCase().includes(searchTerm.toLowerCase());
-  }).sort((a, b) => {
-    if (sortBy === "name") {
-      return sortOrder === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
-    } else if (sortBy === "growth") {
-      return sortOrder === "asc" ? b.growth - a.growth : a.growth - b.growth;
-    }
-    return 0;
-  });
-
-
-
+  
+  console.log(etfs, "ETFS");
 
   return (
     <DashboardLayout>
@@ -139,22 +92,27 @@ export function AllETFs() {
             </Button>
           </div>
         </div>
+        {Array.isArray(etfs["data"]) && etfs["data"].length > 0 ? (
+  viewMode === "grid" ? (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {etfs["data"].map((etf) => (
+        <ETFCard key={etf.id} etf={etf} showDetails={true} />
+      ))}
+    </div>
+  ) : (
+    <div className="flex flex-col gap-4">
+      {etfs["data"].map((etf) => (
+        <ETFCard key={etf.id} etf={etf} showDetails={true} listView={true} />
+      ))}
+    </div>
+  )
+) : (
+  <></>
+)}
+
+
         
-        {viewMode === "grid" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredETFs.map((etf) => (
-              <ETFCard key={etf.id} etf={etf} showDetails={true} />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col gap-4">
-            {filteredETFs.map((etf) => (
-              <ETFCard key={etf.id} etf={etf} showDetails={true} listView={true} />
-            ))}
-          </div>
-        )}
-        
-        { filteredETFs.length === 0 && (
+        { etfs.length === 0 && (
           <div className="text-center py-12">
             <h3 className="text-lg font-medium">No ETFs found</h3>
             <p className="text-muted-foreground">Try adjusting your search criteria</p>

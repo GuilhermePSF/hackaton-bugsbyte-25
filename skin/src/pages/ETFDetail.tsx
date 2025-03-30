@@ -73,12 +73,12 @@ export function ETFDetail() {
   }
 
   let etfs: ETF[] = [];
-    getETFs().then((data) => {
+    getETF(id).then((data) => {
       etfs = data;
     }); 
 
-  const sortedETF : ETF[]= etfs.sort((a, b) => b.growth - a.growth);
-
+  console.log(etf);
+    
   if (!etf) {
     return (
       <DashboardLayout>
@@ -96,15 +96,15 @@ export function ETFDetail() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div>
-              <h1 className="text-2xl font-bold">{etf.name}</h1>
+              <h1 className="text-2xl font-bold">{etf["data"].name}</h1>
               <div className="flex items-center gap-2">
-                <span className="text-lg font-semibold text-muted-foreground">{etf.short_name}</span>
+                <span className="text-lg font-semibold text-muted-foreground">{etf["data"].short_name}</span>
                 <div className={cn(
                   "px-2 py-0.5 rounded text-sm font-medium",
-                  etf.growth > 0 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                  etf["data"].growth > 0 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
                 )}>
-                  {etf.growth > 0 ? <TrendingUp className="inline mr-1 h-3 w-3" /> : <TrendingDown className="inline mr-1 h-3 w-3" />}
-                  {etf.growth > 0 ? "+" : ""}{etf.growth.toFixed(2)}%
+                  {etf["data"].growth > 0 ? <TrendingUp className="inline mr-1 h-3 w-3" /> : <TrendingDown className="inline mr-1 h-3 w-3" />}
+                  {etf["data"].growth > 0 ? "+" : ""}{etf["data"].growth.toFixed(2)}%
                 </div>
               </div>
             </div>
@@ -133,9 +133,9 @@ export function ETFDetail() {
             <CardContent className="text-3xl font-bold">
               <span className={cn(
                 "text-sm ml-2",
-                etf.growth > 0 ? "text-green-600" : "text-red-600"
+                etf["data"].growth > 0 ? "text-green-600" : "text-red-600"
               )}>
-                {etf.growth > 0 ? "+" : ""}{etf.growth.toFixed(2)} ({etf.growth > 0 ? "+" : ""}{etf.growth.toFixed(2)}%)
+                {etf["data"].growth > 0 ? "+" : ""}{etf["data"].growth.toFixed(2)} ({etf["data"].growth > 0 ? "+" : ""}{etf["data"].growth.toFixed(2)}%)
               </span>
             </CardContent>
           </Card>
@@ -144,7 +144,7 @@ export function ETFDetail() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">          
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg font-medium">About {etf.short_name}</CardTitle>
+              <CardTitle className="text-lg font-medium">About {etf["data"].short_name}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">Key Features:
@@ -164,10 +164,6 @@ Liquidity: Traded like stocks, these ETFs offer high liquidity, allowing investo
               </div>
             </CardContent>
           </Card>
-        </div>
-        
-        <div>
-          <HoldingsList holdings={etf.holdings} etfId={etf.id} />
         </div>
       </div>
     </DashboardLayout>
