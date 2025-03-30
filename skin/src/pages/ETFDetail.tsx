@@ -7,21 +7,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingDown, TrendingUp, ExternalLink, Share2, BookmarkPlus } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { getETFs } from "@/lib/api";
+import { getETF } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { ETF } from "@/types/etf";
+import { getCoins} from "@/lib/api";
+import { getAssociations } from "@/lib/api";
+
 
 export function ETFDetail() {
   const { id } = useParams<{ id: string }>();
   const [etf, setEtf] = useState<ETF | null>(null);
   const [loading, setLoading] = useState(true);
+  const [coins, setCoins] = useState<any[]>([]);
+  const [associations, setAssociations] = useState<any[]>([]);
 
   useEffect(() => {
     // This would be replaced with an API call in a real application
     const fetchETF = async () => {
       setLoading(true);
       try {
-        const data = await getETFById(id || "");
+        const data = await getETF(id || "");
         setEtf(data || null);
       } catch (error) {
         console.error("Error fetching ETF data:", error);
@@ -29,11 +34,33 @@ export function ETFDetail() {
         setLoading(false);
       }
     };
+    const fetchCoinsAndAssociations = async () => {
+      try {
+        const coinsData = await getCoins();
+        setCoins(coinsData || []);
+
+        const associationsData = await getAssociations();
+        setAssociations(associationsData || []);
+      } catch (error) {
+        console.error("Error fetching coins or associations:", error);
+      }
+    };
 
     if (id) {
       fetchETF();
+      fetchCoinsAndAssociations();
     }
   }, [id]);
+
+  
+  const getCoinIdsAndPercentagesByETFId = (associations: any[], etfId: string): { coinId: string; percentage: number }[] => {
+    return associations
+      .filter((association) => association.etf_id === etfId) // Filtra as associações pelo etf_id
+      .map((association) => ({
+        coinId: association.moeda_id, // Pega o moeda_id
+        percentage: association.percentagem, // Pega a percentagem associada
+      }));
+  };
 
   if (loading) {
     return (

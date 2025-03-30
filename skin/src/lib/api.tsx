@@ -35,3 +35,11 @@ export async function getETF(id: string) {
 
     return response.data;
 }
+
+
+
+export async function getAssociations() {
+    const response = await API.get(`/api/basket-association/`);
+
+    return response.data;
+}

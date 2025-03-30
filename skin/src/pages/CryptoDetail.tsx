@@ -9,6 +9,7 @@ import { TrendingDown, TrendingUp, ChevronLeft, ArrowUpRight } from "lucide-reac
 import { ETFPerformanceChart } from "@/components/etf/ETFPerformanceChart";
 import { cn } from "@/lib/utils";
 import { Holding } from "@/types/etf";
+import { getCoins } from "@/lib/api";
 
 export function CryptoDetail() {
   const { id } = useParams<{ id: string }>();
