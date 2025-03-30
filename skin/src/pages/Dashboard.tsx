@@ -6,7 +6,12 @@ import { PerformanceChart } from "@/components/dashboard/PerformanceChart";
 import { QuickActions } from "@/components/dashboard/QuickActions";
 import { Bitcoin, DollarSign, Euro } from "lucide-react";
 import { ETFMiniList } from "@/components/dashboard/ETFMiniList";
-import { getAllETFs } from "@/data/mockEtfs";
+import { getETFs} from "@/lib/api";
+import { ETF } from "@/types/etf";
+import {getCoins} from "@/lib/api";
+
+
+
 
 const mockPerformanceData = [
   { date: "Jan", value: 3400 },
@@ -31,8 +36,51 @@ const mockAssetData = [
 ];
 
 export function Dashboard() {
-  const topETFs = getAllETFs().slice(0, 4);
+
   
+  
+  let etfs: ETF[] = [];
+  getETFs().then((data) => {
+    etfs = data;
+  }); 
+  
+  const mockETFs: ETF [] = [
+    {
+      id: "1",
+      name: "Global Tech ETF",
+      short_name: "GTE",
+      growth: 12.5,
+    },
+    {
+      id: "2",
+      name: "Sustainable Energy ETF",
+      short_name: "SEE",
+      growth: 8.3,
+    },
+    {
+      id: "3",
+      name: "Healthcare Leaders ETF",
+      short_name: "HLE",
+      growth: 15.2,
+    },
+    {
+      id: "4",
+      name: "Real Estate ETF",
+      short_name: "REE",
+      growth: 6.8,
+    },
+    {
+      id: "5",
+      name: "Emerging Markets ETF",
+      short_name: "EME",
+      growth: 10.1,
+    },
+  ];
+
+  const sortedETF : ETF[]= mockETFs.sort((a, b) => b.growth - a.growth).slice(0,6);
+
+  
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -88,7 +136,7 @@ export function Dashboard() {
             <AssetAllocation data={mockAssetData} />
           </div>
           <div className="lg:col-span-2">
-            <ETFMiniList etfs={topETFs} />
+            <ETFMiniList etfs={sortedETF} />
           </div>
         </div>
       </div>

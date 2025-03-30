@@ -1,6 +1,5 @@
 
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { getAllETFs } from "@/data/mockEtfs";
 import { ETFCard } from "@/components/etf/ETFCard";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -14,32 +13,65 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Toggle } from "@/components/ui/toggle";
+import { ETF } from "@/types/etf";
+import {getETFs} from "@/lib/api";
 
 export function AllETFs() {
-  const allETFs = getAllETFs();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
-  const [sortBy, setSortBy] = useState<"price" | "name" | "change">("price");
+  const [sortBy, setSortBy] = useState<"name" | "growth">("growth");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  const filteredETFs = allETFs
-    .filter(etf => 
-      etf.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      etf.symbol.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) => {
-      if (sortBy === "price") {
-        return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
-      } else if (sortBy === "name") {
-        return sortOrder === "asc" 
-          ? a.name.localeCompare(b.name) 
-          : b.name.localeCompare(a.name);
-      } else {
-        return sortOrder === "asc" 
-          ? a.change.percentage - b.change.percentage 
-          : b.change.percentage - a.change.percentage;
-      }
-    });
+  /* let etfs: ETF[] = [];
+  getETFs().then((data) => {
+    etfs = data;
+  });  */
+  const etfs: ETF [] = [
+    {
+      id: "1",
+      name: "Global Tech ETF",
+      short_name: "GTE",
+      growth: 12.5,
+    },
+    {
+      id: "2",
+      name: "Sustainable Energy ETF",
+      short_name: "SEE",
+      growth: 8.3,
+    },
+    {
+      id: "3",
+      name: "Healthcare Leaders ETF",
+      short_name: "HLE",
+      growth: 15.2,
+    },
+    {
+      id: "4",
+      name: "Real Estate ETF",
+      short_name: "REE",
+      growth: 6.8,
+    },
+    {
+      id: "5",
+      name: "Emerging Markets ETF",
+      short_name: "EME",
+      growth: 10.1,
+    },
+  ];
+
+  const filteredETFs = etfs.filter((etf) => {
+    return etf.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      etf.short_name.toLowerCase().includes(searchTerm.toLowerCase());
+  }).sort((a, b) => {
+    if (sortBy === "name") {
+      return sortOrder === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+    } else if (sortBy === "growth") {
+      return sortOrder === "asc" ? a.growth - b.growth : b.growth - a.growth;
+    }
+    return 0;
+  });
+
+
 
   return (
     <DashboardLayout>
@@ -76,7 +108,7 @@ export function AllETFs() {
             
             <Select
               value={sortBy}
-              onValueChange={(value) => setSortBy(value as "price" | "name" | "change")}
+              onValueChange={(value) => setSortBy(value as "name" | "growth")}
             >
               <SelectTrigger className="w-[180px]">
                 <Filter className="mr-2 h-4 w-4" />

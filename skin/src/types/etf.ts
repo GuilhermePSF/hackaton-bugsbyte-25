@@ -1,20 +1,9 @@
 
 export interface ETF {
-  id: string;
-  name: string;
-  symbol: string;
-  description: string;
-  price: number;
-  change: {
-    value: number;
-    percentage: number;
-    isPositive: boolean;
-  };
-  marketCap: number;
-  volume24h: number;
-  holdings: Holding[];
-  historicalData: HistoricalData[];
-  imageUrl: string;
+      id: string;
+      name: string; 
+      short_name: string; 
+      growth: number; 
 }
 
 export interface Holding {

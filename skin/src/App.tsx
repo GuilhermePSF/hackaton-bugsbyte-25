@@ -5,8 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Dashboard } from "./pages/Dashboard";
-import { Transactions } from "./pages/Transactions";
-import { Cards } from "./pages/Cards";
 import { Wallet } from "./pages/Wallet";
 import { AllETFs } from "./pages/AllETFs";
 import { ETFDetail } from "./pages/ETFDetail";
@@ -26,8 +24,6 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/index" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/transactions" element={<Transactions />} />
-          <Route path="/cards" element={<Cards />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/etfs" element={<AllETFs />} />
           <Route path="/etfs/:id" element={<ETFDetail />} />

@@ -19,20 +19,17 @@ export function ETFCard({ etf, showDetails = false, listView = false }: ETFCardP
           <Link to={`/etfs/${etf.id}`} className="block">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <h3 className="font-semibold text-lg">{etf.symbol}</h3>
+                <h3 className="font-semibold text-lg">{etf.short_name}</h3>
                 <p className="text-muted-foreground">{etf.name}</p>
               </div>
               
               <div className="flex flex-col items-end">
-                <div className="text-xl font-bold">
-                  ${etf.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                </div>
                 <div className={cn(
                   "flex items-center text-sm font-medium",
-                  etf.change.isPositive ? "text-green-600" : "text-red-600"
+                  etf.growth > 0  ? "text-green-600" : "text-red-600"
                 )}>
-                  {etf.change.isPositive ? <TrendingUp className="mr-1 h-4 w-4" /> : <TrendingDown className="mr-1 h-4 w-4" />}
-                  {etf.change.isPositive ? "+" : ""}{etf.change.percentage.toFixed(2)}%
+                  {etf.growth > 0  ? <TrendingUp className="mr-1 h-4 w-4" /> : <TrendingDown className="mr-1 h-4 w-4" />}
+                  {etf.growth > 0  ? "+" : ""}{etf.growth.toFixed(2)}%
                 </div>
               </div>
             </div>
@@ -57,22 +54,19 @@ export function ETFCard({ etf, showDetails = false, listView = false }: ETFCardP
         <Link to={`/etfs/${etf.id}`} className="block">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-lg">{etf.symbol}</h3>
+              <h3 className="font-semibold text-lg">{etf.short_name}</h3>
               <p className="text-muted-foreground">{etf.name}</p>
             </div>
           </div>
           
           <div className="mt-4">
             <div className="flex justify-between items-center">
-              <div className="text-2xl font-bold">
-                ${etf.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </div>
               <div className={cn(
                 "flex items-center text-sm font-medium",
-                etf.change.isPositive ? "text-green-600" : "text-red-600"
+                etf.growth >0 ? "text-green-600" : "text-red-600"
               )}>
-                {etf.change.isPositive ? <TrendingUp className="mr-1 h-4 w-4" /> : <TrendingDown className="mr-1 h-4 w-4" />}
-                {etf.change.isPositive ? "+" : ""}{etf.change.percentage.toFixed(2)}%
+                {etf.growth > 0 ? <TrendingUp className="mr-1 h-4 w-4" /> : <TrendingDown className="mr-1 h-4 w-4" />}
+                {etf.growth > 0 ? "+" : ""}{etf.growth.toFixed(2)}%
               </div>
             </div>
           </div>

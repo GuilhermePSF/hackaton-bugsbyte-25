@@ -5,12 +5,52 @@ import { ETFCard } from "@/components/etf/ETFCard";
 import { Wallet as WalletIcon, PlusCircle, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ETF } from "@/types/etf";
+import { getETFs} from "@/lib/api";
 
 export function Wallet() {
   const userEtfs = getUserETFs();
-  const totalBalance = userEtfs.reduce((sum, etf) => sum + etf.price, 0);
-  const positiveChange = userEtfs.filter(etf => etf.change.isPositive).length;
+  const totalBalance =  1000/* userEtfs.reduce((sum, etf) => sum + etf.price, 0); */
+  const positiveChange = 2/* userEtfs.filter(etf => etf.change.isPositive).length; */
   const negativeChange = userEtfs.length - positiveChange;
+
+  /* let etfs: ETF[] = [];
+  getETFs().then((data) => {
+    etfs = data;
+  }) */;
+   // ETFS temporarios ate haver informação da API
+  const etfs: ETF [] = [
+    {
+      id: "1",
+      name: "Global Tech ETF",
+      short_name: "GTE",
+      growth: 12.5,
+    },
+    {
+      id: "2",
+      name: "Sustainable Energy ETF",
+      short_name: "SEE",
+      growth: 8.3,
+    },
+    {
+      id: "3",
+      name: "Healthcare Leaders ETF",
+      short_name: "HLE",
+      growth: 15.2,
+    },
+    {
+      id: "4",
+      name: "Real Estate ETF",
+      short_name: "REE",
+      growth: 6.8,
+    },
+    {
+      id: "5",
+      name: "Emerging Markets ETF",
+      short_name: "EME",
+      growth: 10.1,
+    },
+  ];
 
   return (
     <DashboardLayout>
@@ -76,7 +116,7 @@ export function Wallet() {
 
         <h2 className="text-xl font-semibold mt-8">My ETF Investments</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {userEtfs.map((etf) => (
+          {etfs.map((etf) => (
             <ETFCard key={etf.id} etf={etf} showDetails={true} />
           ))}
         </div>
