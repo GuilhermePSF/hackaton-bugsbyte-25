@@ -9,8 +9,7 @@ import { Bitcoin, DollarSign, Euro } from "lucide-react";
 import { ETFMiniList } from "@/components/dashboard/ETFMiniList";
 import { getETFs} from "@/lib/api";
 import { ETF } from "@/types/etf";
-import {getCoins} from "@/lib/api";
-
+import { getAnalyze, getCoins } from '@/lib/api';
 
 
 
@@ -37,7 +36,10 @@ const mockAssetData = [
 ];
 
 export function Dashboard() {
-  
+  const res = getAnalyze("Bitcoin", 100);
+  console.log(res);
+  const res2= getCoins();
+  console.log(res2);
   
   let etfs: ETF[] = [];
   getETFs().then((data) => {

@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import uvicorn
 import os
@@ -23,7 +24,7 @@ def get_adjusted_mu(sentiment_score, base_mu=0.0005):
     adjusted_mu = base_mu + (sentiment_score * 0.0002)
     return adjusted_mu
 
-def monte_carlo_simulation(price, mu, sigma=0.02, days=30, simulations=1000):
+def monte_carlo_simulation(price, mu, sigma=0.02, days=7, simulations=1000):
     results = []
     
     for _ in range(simulations):
@@ -35,6 +36,15 @@ def monte_carlo_simulation(price, mu, sigma=0.02, days=30, simulations=1000):
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite todas as origens (pode restringir depois)
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos os métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permite todos os headers
+)
+
 analyzer = SentimentIntensityAnalyzer()
 
 class InputData(BaseModel):
@@ -43,7 +53,6 @@ class InputData(BaseModel):
 
 @app.post("/analyze")
 async def analyze_sentiment(input_data: InputData):
-    print("CRLH")
     news = get_crypto_news_from_newsapi(input_data.coin) + get_crypto_news_from_newsapi("crypto")
     sentimentos=[]
     for newz in news:
