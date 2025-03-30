@@ -19,7 +19,7 @@ export interface Holding {
   };
 }
 
-export interface BasketAssociasion {
+export interface BasketAssociation {
   id: string;
   etf_id: string;
   moeda_id: string;

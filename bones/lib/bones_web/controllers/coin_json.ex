@@ -1,5 +1,8 @@
 defmodule BonesWeb.CoinJSON do
+  alias Bones.Repo
+  alias Bones.Resources
   alias Bones.Resources.Coin
+  alias Bones.Resources.BasketAssociation
 
   @doc """
   Renders a list of coins.

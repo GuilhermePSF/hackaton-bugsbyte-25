@@ -1,5 +1,7 @@
 defmodule BonesWeb.EtfJSON do
   alias Bones.Resources.Etf
+  alias Bones.Resources.BasketAssociation
+  alias Bones.Resources.Coin
 
   @doc """
   Renders a list of etfs.
@@ -11,12 +13,12 @@ defmodule BonesWeb.EtfJSON do
   @doc """
   Renders a single etf.
   """
-  
-  defp calculate_etf_growth(etf_uuid) do
-    associations = Repo.all(from ass in BasketAssociation, where: ass.etf_id == ^etf_uuid)
-    moeda_ids = Enum.map(associations, & &1.moeda_id)
-    coins = Repo.all(from coin in Coin, where: coin.id in ^moeda_ids)
-  end
+
+  #def etf_to_coins(etf_uuid) do
+  #  BasketAssociation
+  #  |> where([a], a.etf_id == ^etf_uuid)
+  #  |>Repo.all()
+  #end
 
   def show(%{etf: etf}) do
     %{data: data(etf)}

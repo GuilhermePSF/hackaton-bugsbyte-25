@@ -7,7 +7,7 @@ import { PerformanceChart } from "@/components/dashboard/PerformanceChart";
 import { QuickActions } from "@/components/dashboard/QuickActions";
 import { Bitcoin, DollarSign, Euro } from "lucide-react";
 import { ETFMiniList } from "@/components/dashboard/ETFMiniList";
-import { getETFs} from "@/lib/api";
+import { getAssociations, getETFs } from "@/lib/api";
 import { ETF } from "@/types/etf";
 import { getAnalyze, getCoins } from '@/lib/api';
 
@@ -38,50 +38,33 @@ const mockAssetData = [
 export function Dashboard() {
   const res = getAnalyze("Bitcoin", 100);
   console.log(res);
-  const res2= getCoins();
+  const res2 = getCoins();
   console.log(res2);
-  
-  let etfs: ETF[] = [];
-  getETFs().then((data) => {
-    etfs = data;
-  }); 
-  
-  const mockETFs: ETF [] = [
-    {
-      id: "1",
-      name: "Global Tech ETF",
-      short_name: "GTE",
-      growth: 12.5,
-    },
-    {
-      id: "2",
-      name: "Sustainable Energy ETF",
-      short_name: "SEE",
-      growth: 8.3,
-    },
-    {
-      id: "3",
-      name: "Healthcare Leaders ETF",
-      short_name: "HLE",
-      growth: 15.2,
-    },
-    {
-      id: "4",
-      name: "Real Estate ETF",
-      short_name: "REE",
-      growth: 6.8,
-    },
-    {
-      id: "5",
-      name: "Emerging Markets ETF",
-      short_name: "EME",
-      growth: 10.1,
-    },
-  ];
+  const res3 = getAssociations();
+  console.log(res3);
 
-  const sortedETF : ETF[]= mockETFs.sort((a, b) => b.growth - a.growth).slice(0,6);
 
-  
+  const [etfs, setEtfs] = useState([]);
+
+  useEffect(() => {
+    console.log(etfs, "ETFS");
+    const fetchUserETFs = async () => {
+      try {
+        const eTf = await getETFs();
+        setEtfs(eTf.data);
+      } catch (error) {
+        console.error("Error fetching user ETFs:", error);
+      }
+    };
+
+    fetchUserETFs();
+  }, []);
+
+  console.log(etfs, "ETFS");
+
+  const sortedETF: ETF[] = etfs.sort((a, b) => b.growth - a.growth).slice(0, 6);
+
+
 
   return (
     <DashboardLayout>
@@ -138,7 +121,7 @@ export function Dashboard() {
             <AssetAllocation data={mockAssetData} />
           </div>
           <div className="lg:col-span-2">
-            <ETFMiniList etfs={sortedETF}/>
+            <ETFMiniList etfs={sortedETF} />
           </div>
         </div>
       </div>

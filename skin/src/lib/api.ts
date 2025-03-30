@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from "axios";
 
 // URLs para os diferentes servidores
 const API_URL_8888 = 'http://localhost:8888';
-const API_URL_4000 = 'http://10.14.0.112:4000';
+const API_URL_4000 = 'http://localhost:4000';
 
 // Criar instâncias de axios para os dois servidores
 export const API_8888: AxiosInstance = axios.create({
@@ -45,14 +45,14 @@ export async function getETF(id: string) {
 }
 
 export async function getAssociations() {
-  const response = await API_4000.get(`/api/basket-association/`);
+  const response = await API_4000.get(`/api/basket_association`);
   return response.data;
 }
 
 export async function getAnalyze(coin: string, price) {
-  const response = await API_8888.post('/analyze', { 
+  const response = await API_8888.post('/analyze', {
     coin: coin,
-    price: price 
+    price: price
   });
 
   return response.data;

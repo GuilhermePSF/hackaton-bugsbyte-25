@@ -9,24 +9,28 @@ import { TrendingDown, TrendingUp, ExternalLink, Share2, BookmarkPlus } from "lu
 import { cn } from "@/lib/utils";
 import { getETF } from "@/lib/api";
 import { useEffect, useState } from "react";
-import { ETF } from "@/types/etf";
-import { getCoins} from "@/lib/api";
+import { Coin, ETF } from "@/types/etf";
+import { getCoins } from "@/lib/api";
 import { getAssociations } from "@/lib/api";
+import { BasketAssociation } from "@/types/etf";
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 
 
 export function ETFDetail() {
   const { id } = useParams<{ id: string }>();
   const [etf, setEtf] = useState<ETF | null>(null);
   const [loading, setLoading] = useState(true);
-  const [coins, setCoins] = useState<any[]>([]);
-  const [associations, setAssociations] = useState<any[]>([]);
+  const [coins, setCoins] = useState<Coin[]>([]);
+  const [associations, setAssociations] = useState<BasketAssociation[]>([]);
 
   useEffect(() => {
     // This would be replaced with an API call in a real application
     const fetchETF = async () => {
       setLoading(true);
       try {
-        const data = await getETF(id || "");
+        console.log(id);
+        const [data] = await getETF(id || "");
         setEtf(data || null);
       } catch (error) {
         console.error("Error fetching ETF data:", error);
@@ -34,33 +38,41 @@ export function ETFDetail() {
         setLoading(false);
       }
     };
+    const fetchCoin = async () => {
+      setLoading(true);
+      try {
+        const [data] = await getCoins();
+        setCoins(data || null);
+      } catch (error) {
+        console.error("Error fetching ETF data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
     const fetchCoinsAndAssociations = async () => {
       try {
         const coinsData = await getCoins();
-        setCoins(coinsData || []);
+        setCoins(coinsData.data || []);
 
         const associationsData = await getAssociations();
-        setAssociations(associationsData || []);
+        if (associationsData && etf)
+          setAssociations(associationsData.data.filter(association => association.etf_id === etf.data.id))
+        console.log(associations)
       } catch (error) {
         console.error("Error fetching coins or associations:", error);
       }
     };
 
     if (id) {
+      fetchCoin()
       fetchETF();
       fetchCoinsAndAssociations();
     }
   }, [id]);
 
-  
-  const getCoinIdsAndPercentagesByETFId = (associations: any[], etfId: string): { coinId: string; percentage: number }[] => {
-    return associations
-      .filter((association) => association.etf_id === etfId) // Filtra as associações pelo etf_id
-      .map((association) => ({
-        coinId: association.moeda_id, // Pega o moeda_id
-        percentage: association.percentagem, // Pega a percentagem associada
-      }));
-  };
+
+
+
 
   if (loading) {
     return (
@@ -72,13 +84,8 @@ export function ETFDetail() {
     );
   }
 
-  let etfs: ETF[] = [];
-    getETF(id).then((data) => {
-      etfs = data;
-    }); 
 
-  console.log(etf);
-    
+
   if (!etf) {
     return (
       <DashboardLayout>
@@ -109,7 +116,7 @@ export function ETFDetail() {
               </div>
             </div>
           </div>
-          
+
           <div className="flex gap-2">
             <Button variant="outline" size="sm">
               <Share2 className="mr-2 h-4 w-4" />
@@ -124,15 +131,15 @@ export function ETFDetail() {
             </Button>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           <Card className="lg:col-span-3">
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg font-medium">Price</CardTitle>
+              <CardTitle className="text-4xl font-bold">Growth in the last year</CardTitle>
             </CardHeader>
-            <CardContent className="text-3xl font-bold">
+            <CardContent className="text-5xl font-bold">
               <span className={cn(
-                "text-sm ml-2",
+                "text-3xl ml-2",
                 etf["data"].growth > 0 ? "text-green-600" : "text-red-600"
               )}>
                 {etf["data"].growth > 0 ? "+" : ""}{etf["data"].growth.toFixed(2)} ({etf["data"].growth > 0 ? "+" : ""}{etf["data"].growth.toFixed(2)}%)
@@ -140,22 +147,22 @@ export function ETFDetail() {
             </CardContent>
           </Card>
         </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">          
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg font-medium">About {etf["data"].short_name}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">Key Features:
-Diversification: Instead of investing in a single cryptocurrency, the ETF holds multiple assets, reducing individual coin risk.
+                Diversification: Instead of investing in a single cryptocurrency, the ETF holds multiple assets, reducing individual coin risk.
 
-Ease of Access: Investors can buy and sell ETF shares on traditional stock exchanges, eliminating the need to manage private keys or crypto wallets.
+                Ease of Access: Investors can buy and sell ETF shares on traditional stock exchanges, eliminating the need to manage private keys or crypto wallets.
 
-Regulated Structure: Many crypto ETFs operate under financial regulations, offering a safer and more transparent investment vehicle compared to direct crypto holdings.
+                Regulated Structure: Many crypto ETFs operate under financial regulations, offering a safer and more transparent investment vehicle compared to direct crypto holdings.
 
-Liquidity: Traded like stocks, these ETFs offer high liquidity, allowing investors to enter and exit positions with ease.</p>
-              
+                Liquidity: Traded like stocks, these ETFs offer high liquidity, allowing investors to enter and exit positions with ease.</p>
+
               <div className="mt-4">
                 <Button variant="outline" size="sm" className="w-full">
                   <ExternalLink className="mr-2 h-4 w-4" />

@@ -37,6 +37,7 @@ defmodule Bones.MixProject do
       {:ecto_sql, "~> 3.10"},
       {:myxql, ">= 0.0.0"},
       {:swoosh, "~> 1.5"},
+      {:cors_plug, "~> 3.0"},
       {:finch, "~> 0.13"},
       {:httpoison, "~> 2.0"},
       {:telemetry_metrics, "~> 1.0"},

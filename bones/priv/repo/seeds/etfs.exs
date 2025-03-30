@@ -29,10 +29,18 @@ defmodule Bones.Repo.Seeds.Etfs do
     {"MemeCoin Vault", "MEM-VT"}
   ]
 
+   def etf_to_coins(etf_uuid) do
+    associations = Repo.all(from a in BasketAssociation, where: a.etf_id == ^etf_uuid)
+    moeda_ids = Enum.map(associations, & &1.moeda_id)
+    Repo.all(from coin in Coin, where: coin.id in ^moeda_ids)
+  end
+
   defp calculate_etf_growth(etf_uuid) do
-    associations = Repo.all(from ass in BasketAssociation, where: ass.etf_id == ^etf_uuid)
+    associations = Repo.all(from a in BasketAssociation, where: a.etf_id == ^etf_uuid)
     moeda_ids = Enum.map(associations, & &1.moeda_id)
     coins = Repo.all(from coin in Coin, where: coin.id in ^moeda_ids)
+
+    IO.inspect(coins)
 
     associations
     |> Enum.map(fn assoc ->

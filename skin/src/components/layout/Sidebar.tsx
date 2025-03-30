@@ -45,7 +45,7 @@ export function Sidebar() {
   return (
     <div className="flex flex-col h-screen border-r border-gray-200 bg-white w-64">
       <div className="flex items-center p-4">
-        <div className="text-xl font-bold text-uphold-primary">MyFB</div>
+        <div className="text-xl font-bold text-uphold-primary">Cryptic</div>
       </div>
 
       <div className="flex-grow overflow-y-auto p-2">
